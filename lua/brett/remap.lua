@@ -14,12 +14,14 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 vim.keymap.set("n", "Q", "<noop>")
-vim.keymap.set("n", "<leader>f", function()
-    vim.lsp.buf.format()
-end)
-
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
+end)
+
+vim.keymap.set("n", "<leader>b", function()
+    -- TODO: just call our function not a command
+    vim.cmd("wa")
+    vim.cmd("Build")
 end)

@@ -20,6 +20,7 @@ vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
+
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
@@ -29,3 +30,8 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.g.mapleader = " "
+
+vim.api.nvim_create_autocmd("FileType", { callback = function()
+    -- Disable stupid auto-comment on o/O
+    vim.opt.formatoptions:remove { "r", "c", "o" }
+end})
