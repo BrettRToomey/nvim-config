@@ -7,10 +7,18 @@ P = function(t)
     return t
 end
 
-local ns = "brett:build"
+local brett_namespace = vim.api.nvim_create_namespace("brett.build")
+local last_build_params = {}
 
 vim.api.nvim_create_user_command("Build", function(params)
-    --vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+    vim.api.nvim_buf_clear_namespace(0, brett_namespace, 0, -1)
+    local args = last_build_params
+    if #params.fargs > 0 then
+        args = params.fargs
+    end
+
+    local cmd = { "./build.sh", unpack(args) }
+    last_build_params = args
 
     local pickers = require "telescope.pickers"
     local finders = require "telescope.finders"
@@ -19,8 +27,7 @@ vim.api.nvim_create_user_command("Build", function(params)
 
     local lines = {}
 
-    -- TODO: params to build
-    vim.fn.jobstart("./build.sh wispy asan", {
+    vim.fn.jobstart(cmd, {
         stderr_buffered = true,
 
         on_stderr = function(_, data)
@@ -42,7 +49,8 @@ vim.api.nvim_create_user_command("Build", function(params)
 
             -- ~brt: TODO: set diagnostics
             vim.fn.setqflist({}, " ", { title = "Build", items = items, })
-            vim.cmd("cw")
+            vim.cmd("cw 25")
+
             print("Done.")
                 --[[
             if #errors > 0 then

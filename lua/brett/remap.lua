@@ -20,8 +20,11 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
-vim.keymap.set("n", "<leader>b", function()
+vim.keymap.set("n", "<leader>r", function()
     -- TODO: just call our function not a command
     vim.cmd("wa")
     vim.cmd("Build")
 end)
+
+vim.keymap.set("n", "<C-j>", ":cnext<CR>")
+vim.keymap.set("n", "<C-k>", ":cprev<CR>")
