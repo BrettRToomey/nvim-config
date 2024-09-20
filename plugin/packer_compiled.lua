@@ -89,11 +89,6 @@ _G.packer_plugins = {
     path = "/Users/bretttoomey/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
-  ["onenord.nvim"] = {
-    loaded = true,
-    path = "/Users/bretttoomey/.local/share/nvim/site/pack/packer/start/onenord.nvim",
-    url = "https://github.com/rmehri01/onenord.nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/bretttoomey/.local/share/nvim/site/pack/packer/start/packer.nvim",

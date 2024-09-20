@@ -20,6 +20,8 @@ vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
+-- vsplit the new window to the right
+vim.opt.splitright = true
 
 vim.opt.termguicolors = true
 
@@ -30,6 +32,8 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.g.mapleader = " "
+
+vim.cmd.colorscheme("bergen")
 
 vim.api.nvim_create_autocmd("FileType", { callback = function()
     -- Disable stupid auto-comment on o/O
