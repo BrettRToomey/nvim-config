@@ -10,22 +10,25 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.breakindent = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
--- vsplit the new window to the right
 vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+vim.opt.inccommand = 'split'
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 10
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
@@ -34,6 +37,14 @@ vim.opt.updatetime = 50
 vim.g.mapleader = " "
 
 vim.cmd.colorscheme("bergen")
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight Yanks",
+    group = vim.api.nvim_create_augroup("brett-highlight-yank", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
 
 vim.api.nvim_create_autocmd("FileType", { callback = function()
     -- Disable stupid auto-comment on o/O

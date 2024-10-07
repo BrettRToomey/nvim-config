@@ -37,40 +37,14 @@ vim.api.nvim_create_user_command("Build", function(params)
         end,
 
         on_exit = function()
-            -- TODO: set cwd so that the file paths are correct
-            local items = vim.fn.getqflist({ lines = lines }).items
+            local qf = vim.fn.getqflist({ lines = lines })
+            local items = qf.items
 
-            --[[
-            local errors = {}
-            for _, v in ipairs(items) do
-                if v.valid == 1 then table.insert(errors, v) end
-            end
-            ]]--
 
-            -- ~brt: TODO: set diagnostics
             vim.fn.setqflist({}, " ", { title = "Build", items = items, })
             vim.cmd("cw 25")
 
             print("Done.")
-                --[[
-            if #errors > 0 then
-
-                pickers.new({}, {
-                    prompt_title = "Build Errors",
-                    finder = finders.new_table {
-                        results = errors,
-                        entry_maker = make_entry.gen_from_quickfix({}),
-                    },
-                    previewer = conf.qflist_previewer({}),
-                    sorter = conf.generic_sorter({}),
-                }):find()
-
-
-            else
-                print("hehehe")
-            end
-                ]]--
-
         end
     })
 end, {
