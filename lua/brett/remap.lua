@@ -27,3 +27,30 @@ end)
 
 vim.keymap.set("n", "<C-j>", ":cnext<CR>")
 vim.keymap.set("n", "<C-k>", ":cprev<CR>")
+
+vim.keymap.set("n", "<leader>cs", function()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local line = row - 1
+    vim.api.nvim_buf_set_lines(0, line, line, false,
+    {
+        "///////////////////////////////////////////////////////////////////////////////",
+        "//~ brt: ",
+        "",
+    })
+
+    local keys = vim.api.nvim_replace_termcodes("<Up><Up>A", true, false, true)
+    vim.api.nvim_feedkeys(keys, 'n', false)
+end)
+
+vim.keymap.set("n", "<leader>cn", function()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local line = row - 1
+    vim.api.nvim_buf_set_lines(0, line, line, false,
+    {
+        "//- brt: ",
+        "",
+    })
+
+    local keys = vim.api.nvim_replace_termcodes("<Up><Up>A", true, false, true)
+    vim.api.nvim_feedkeys(keys, 'n', false)
+end)
