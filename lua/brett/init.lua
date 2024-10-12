@@ -10,6 +10,15 @@ end
 local brett_namespace = vim.api.nvim_create_namespace("brett.build")
 local last_build_params = {}
 
+vim.api.nvim_create_user_command("Style", function(params)
+    local size = tonumber(params.fargs[1]) or 2
+    vim.cmd("set tabstop=" .. size .. " softtabstop=" .. size .. " shiftwidth=" .. size)
+    print("Set indent size to " .. size)
+end, {
+    desc = "Set size of tabs",
+    nargs = 1,
+})
+
 vim.api.nvim_create_user_command("Build", function(params)
     vim.api.nvim_buf_clear_namespace(0, brett_namespace, 0, -1)
     local args = last_build_params
