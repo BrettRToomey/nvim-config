@@ -50,3 +50,5 @@ vim.api.nvim_create_autocmd("FileType", { callback = function()
     -- Disable stupid auto-comment on o/O
     vim.opt.formatoptions:remove { "r", "c", "o" }
 end})
+
+vim.filetype.add { extension = { metal = "cpp" } }

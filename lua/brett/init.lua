@@ -26,7 +26,7 @@ vim.api.nvim_create_user_command("Build", function(params)
         args = params.fargs
     end
 
-    local cmd = { "build.sh", unpack(args) }
+    local cmd = { "./build.sh", unpack(args) }
     last_build_params = args
 
     local pickers = require "telescope.pickers"
