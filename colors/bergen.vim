@@ -1,6 +1,7 @@
 " Vim color file
 " bergen
 " Created by martin haesler with ThemeCreator (https://github.com/mswift42/themecreator)
+" Modified by Brett R. Toomey
 
 hi clear
 
@@ -24,13 +25,13 @@ let s:bg4="#b2b0b1"
 let s:keyword="#5c71b3"
 let s:builtin="#a35c8e"
 let s:const= "#0081a6"
-let s:comment="#a35c8e"
-let s:func="#926e31"
+let s:comment="#926e31"
+let s:func="#585858"
 let s:str="#b15a56"
 let s:type="#00847a"
 let s:var="#6d3e7e"
 let s:warning="#ff1276"
-let s:warning2="#ff4d12"
+let s:warning2="#4dffd12"
 
 exe 'hi Normal guifg='s:fg' guibg='s:bg 
 exe 'hi Cursor guifg='s:bg' guibg='s:fg 
@@ -62,7 +63,7 @@ exe 'hi ErrorMsg guifg='s:warning' guibg='s:bg2' gui=bold'
 exe 'hi WarningMsg guifg='s:fg' guibg='s:warning2 
 exe 'hi Float guifg='s:const  
 exe 'hi Function guifg='s:func  
-exe 'hi Identifier guifg='s:type'  gui=italic'
+exe 'hi Identifier guifg='s:fg'  gui=italic'
 exe 'hi Keyword guifg='s:keyword'  gui=bold'
 exe 'hi Label guifg='s:var
 exe 'hi NonText guifg='s:bg4' guibg='s:bg2 
