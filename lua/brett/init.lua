@@ -9,6 +9,7 @@ end
 
 local brett_namespace = vim.api.nvim_create_namespace("brett.build")
 local last_build_params = {}
+local last_debug_params = "xcdebug"
 
 vim.api.nvim_create_user_command("Style", function(params)
     local size = tonumber(params.fargs[1]) or 2
@@ -17,6 +18,21 @@ vim.api.nvim_create_user_command("Style", function(params)
 end, {
     desc = "Set size of tabs",
     nargs = 1,
+})
+
+vim.api.nvim_create_user_command("Debug", function(params)
+    local args = last_debug_params
+    if #params.args > 0 then
+        args = params.args
+    end
+
+    last_debug_params = args
+
+    vim.cmd("!" .. args)
+end, {
+    desc = "Start debug session",
+    nargs = "*",
+    bang = true,
 })
 
 vim.api.nvim_create_user_command("Build", function(params)
