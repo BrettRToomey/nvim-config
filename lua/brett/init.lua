@@ -45,11 +45,12 @@ vim.api.nvim_create_user_command("Build", function(params)
     local cmd = { "./build.sh", unpack(args) }
     last_build_params = args
 
-    local pickers = require "telescope.pickers"
-    local finders = require "telescope.finders"
-    local make_entry = require "telescope.make_entry"
-    local conf = require("telescope.config").values
+    local targets_string = "default"
+    if #last_build_params > 0 then
+      targets_string = table.concat(last_build_params, ", ")
+    end
 
+    print("Building " .. targets_string)
     local lines = {}
 
     vim.fn.jobstart(cmd, {
@@ -65,11 +66,10 @@ vim.api.nvim_create_user_command("Build", function(params)
             local qf = vim.fn.getqflist({ lines = lines })
             local items = qf.items
 
-
             vim.fn.setqflist({}, " ", { title = "Build", items = items, })
             vim.cmd("cw 25")
 
-            print("Done.")
+            print("Done. (" .. targets_string .. ")")
         end
     })
 end, {
